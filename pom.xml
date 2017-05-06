@@ -22,6 +22,8 @@
 		<hamcrest.date.version>2.0.3</hamcrest.date.version>
 		<hibernate.version>5.2.10.Final</hibernate.version>
 		<resteasy-client.version>3.1.2.Final</resteasy-client.version>
+		<h2.version>1.4.187</h2.version>
+		<postgresql.version>42.0.0</postgresql.version>
 	</properties>
 
 	<dependencyManagement>
@@ -52,6 +54,38 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.bsc.maven</groupId>
+				<artifactId>maven-processor-plugin</artifactId>
+				<version>3.3.1</version>
+				<executions>
+					<execution>
+						<id>process</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<configuration>
+							<processors>
+								<processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+							</processors>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-jpamodelgen</artifactId>
+						<version>5.2.10.Final</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<proc>none</proc>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -75,6 +109,13 @@
 		<dependency>
 			<groupId>org.wildfly.swarm</groupId>
 			<artifactId>jpa</artifactId>
+		</dependency>
+		
+		<!-- JDBC -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${postgresql.version}</version>
 		</dependency>
 
 		<!-- Testing dependency -->
@@ -117,6 +158,18 @@
 			<artifactId>resteasy-client</artifactId>
 			<version>${resteasy-client.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${h2.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+			<version>5.2.10.Final</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>
