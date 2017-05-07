@@ -51,9 +51,9 @@ public class TaskEndpoint {
 	}
 
 	@GET
-	public List<Task> listAll(@QueryParam("start") final Integer startPosition,	@QueryParam("max") final Integer maxResult) {
+	public Response listAll(@QueryParam("start") final Integer startPosition,	@QueryParam("max") final Integer maxResult) {
 		// no pagination required for now
-		return repository.getAllForCurrentUser();
+		return Response.ok(repository.getAllForCurrentUser()).build();
 	}
 
 	@PUT
