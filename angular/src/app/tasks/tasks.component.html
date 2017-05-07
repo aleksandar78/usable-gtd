@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-7">
+      <h2>{{ title }}</h2>
+      <div class="row add-box">
+        <div class="col-9">
+          <input class="form-control" type="text" placeholder="New task" [(ngModel)]="desc" name="description" #descRef="ngModel">
+        </div>
+        <div class="col-3">
+          <button class="btn btn-sm btn-secondary" style="width:100%; height:100%;" (click)="onAdd()" [disabled]="isEmpty()">
+            <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <gtd-task *ngFor="let t of openTasks" [task]="t" (completeEmitter)="onComplete($event)" (deleteEmitter)="onDelete($event)"></gtd-task>
+      </div>
+    </div>
+  </div>
+</div>
+

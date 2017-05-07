@@ -27,4 +27,24 @@ export class TasksService {
       .catch(err => Observable.throw(err || 'Task endpoint service unavailable'));
   }
 
+  closeTask(id: number): Observable<void> {
+    return this.http.put(`${environment.endpointUrl}/tasks/${id}`, null)
+      .map(res => {
+        if (res.status !== 204) {
+          return Observable.throw(res.json().error);
+        }
+      })
+      .catch(err => Observable.throw(err || 'Task endpoint service unavailable'));
+  }
+
+  deleteTask(id: number): Observable<void> {
+    return this.http.delete(`${environment.endpointUrl}/tasks/${id}`)
+      .map(res => {
+        if (res.status !== 204) {
+          return Observable.throw(res.json().error);
+        }
+      })
+      .catch(err => Observable.throw(err || 'Task endpoint service unavailable'));
+  }
+
 }
