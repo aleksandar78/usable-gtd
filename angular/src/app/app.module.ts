@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { TaskComponent } from './tasks/task.component';
 
+import { TasksService } from './tasks/tasks.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,7 @@ import { TaskComponent } from './tasks/task.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [TasksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
