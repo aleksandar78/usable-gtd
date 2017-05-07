@@ -1,13 +1,18 @@
 package org.devliberty.usablegtd.boundary;
 
+import java.util.Optional;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 
 import org.devliberty.usablegtd.control.TaskRepository;
@@ -31,5 +36,14 @@ public class TaskEndpoint {
 				.build();
 	}
 
-}
+	@GET
+	@Path("/{id:[0-9][0-9]*}")
+	public Response findById(@PathParam("id") final Long id) {
+		Optional<Task> opt = repository.byId(id);
+		if (!opt.isPresent()) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(opt.get()).build();
+	}
 
+}
