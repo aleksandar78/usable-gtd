@@ -10,6 +10,7 @@
 
 	<properties>
 		<version.wildfly.swarm>2017.5.0</version.wildfly.swarm>
+		<maven.compiler.plugin.version>3.6.1</maven.compiler.plugin.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
@@ -23,7 +24,7 @@
 		<hibernate.version>5.2.10.Final</hibernate.version>
 		<resteasy-client.version>3.1.2.Final</resteasy-client.version>
 		<h2.version>1.4.187</h2.version>
-		<postgresql.version>42.0.0</postgresql.version>
+		<postgresql.version>9.4.1212</postgresql.version>
 	</properties>
 
 	<dependencyManagement>
@@ -45,7 +46,6 @@
 				<groupId>org.wildfly.swarm</groupId>
 				<artifactId>wildfly-swarm-plugin</artifactId>
 				<version>${version.wildfly.swarm}</version>
-
 				<executions>
 					<execution>
 						<goals>
@@ -55,37 +55,14 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.bsc.maven</groupId>
-				<artifactId>maven-processor-plugin</artifactId>
-				<version>3.3.1</version>
-				<executions>
-					<execution>
-						<id>process</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>process</goal>
-						</goals>
-						<configuration>
-							<processors>
-								<processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
-							</processors>
-						</configuration>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.hibernate</groupId>
-						<artifactId>hibernate-jpamodelgen</artifactId>
-						<version>5.2.10.Final</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<proc>none</proc>
-				</configuration>
-			</plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
@@ -116,6 +93,11 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>${postgresql.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${h2.version}</version>
 		</dependency>
 
 		<!-- Testing dependency -->
@@ -157,12 +139,6 @@
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-client</artifactId>
 			<version>${resteasy-client.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>${h2.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
