@@ -1,0 +1,20 @@
+project:
+  stage: production
+logger:
+  level: INFO
+swarm:
+  port:
+    offset: 0
+swarm:
+  datasources:
+    data-sources:
+      GtdDS:
+        driver-name: org.postgresql
+        connection-url: jdbc:postgresql://45.63.119.200:25432/gtd
+        user-name: gtduser
+        password: gtdpass
+    jdbc-drivers:
+      org.postgresql:
+        driver-class-name: org.postgresql.Driver
+        xa-datasource-name: org.postgresql.xa.PGXADataSourc
+        driver-module-name: org.postgresql
