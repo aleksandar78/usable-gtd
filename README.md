@@ -3,8 +3,8 @@ Web based Todo application
 
 ### Description
 Technology used for implementation:
-* Backend: Java EE 7 ( Jax-Rs, JPA/Hibrnate, CDI )  wildfly-swarm 
-* Frontend: angular 4 framework
+* Backend: Java EE 7 ( Jax-Rs, JPA/Hibrnate, CDI ) using wildfly-swarm
+* Frontend: angular 4 framework, bootstrap 4
 
 ### Build process requirements:
 * java sdk 8 or above
@@ -20,7 +20,9 @@ Technology used for implementation:
 
 #### Download and execute
 ```shell
-$ java -jar target/usablegtd-swarm.jar
+$ wget https://github.com/aleksandar78/usable-gtd/releases/download/v0.1/usablegtd-swarm.jar
+
+$ java -jar usablegtd-swarm.jar
 ```
 
 #### Or build and execute
@@ -29,3 +31,9 @@ $ java -jar target/usablegtd-swarm.jar
 $ mvn clean package
 
 $ java -jar target/usablegtd-swarm.jar
+```
+
+#### Access url:
+[Web app - http://localhost:8080] (http://localhost:8080)
+
+[Rest endpoint - http://localhost:8080/rest] (http://localhost:8080/rest)
