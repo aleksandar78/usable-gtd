@@ -31,9 +31,13 @@ $ wget https://github.com/aleksandar78/usable-gtd/releases/download/v0.1/usableg
 $ java -jar usablegtd-swarm.jar
 ```
 
-#### Or build and execute
+#### Or clone, build and execute
 
 ```shell
+$ git clone https://github.com/aleksandar78/usable-gtd.git
+
+$ cd usable-gtd
+
 $ mvn clean package
 
 $ java -jar target/usablegtd-swarm.jar
