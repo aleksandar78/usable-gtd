@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -50,5 +51,13 @@ public class TaskRepository {
 				.setParameter("states", states)
 				.getResultList();
 	}
-		
+	
+	public Task complete(Task task) {
+		User cu = userRepository.getCurrentUser();
+		task.setUser(cu);
+		task.setState(TaskState.COMPLETED.name());
+		task.setCompletedAt(new Date());
+		return em.merge(task);
+	}
+	
 }
