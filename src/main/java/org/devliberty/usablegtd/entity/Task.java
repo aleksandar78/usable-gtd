@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -51,6 +52,7 @@ public class Task implements Serializable {
 	@Column(length=20)
 	private String state;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="owner", nullable=false)
 	private User user;
