@@ -1,5 +1,9 @@
 package org.devliberty.usablegtd.control;
 
+import java.util.Optional;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -31,6 +35,10 @@ public class TaskRepository {
 		task.setState(TaskState.TODO.name());
 		em.persist(task);
 		return task.getId();
+	}
+	
+	public Optional<Task> byId(Long id) {
+		return Optional.ofNullable(em.find(Task.class, id));
 	}
 	
 }
