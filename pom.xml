@@ -11,6 +11,7 @@
 	<properties>
 		<version.wildfly.swarm>2017.5.0</version.wildfly.swarm>
 		<maven.compiler.plugin.version>3.6.1</maven.compiler.plugin.version>
+		<maven.war.plugin.version>2.6</maven.war.plugin.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
@@ -63,6 +64,18 @@
                     <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${maven.war.plugin.version}</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>angular/dist</directory>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
