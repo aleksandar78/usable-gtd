@@ -18,9 +18,9 @@ Technology used for implementation:
 
 ### Configuration
 Application persist data in Postgresql Database. 
-An instance of db is hosted on vultr ( https://www.vultr.com/ ). 
+An instance of db is hosted on vultr cloud platform ( https://www.vultr.com/ ). 
 For demo pupose only instance will be temporary available.
-Persist data can be removed at any time.
+Persisted data can be removed at any time.
 
 ## HowTo run application
 
