@@ -1,5 +1,6 @@
 package org.devliberty.usablegtd.boundary;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,7 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 
 import org.devliberty.usablegtd.control.TaskRepository;
+import org.devliberty.usablegtd.control.TaskState;
 import org.devliberty.usablegtd.entity.Task;
 
 @RequestScoped
@@ -54,6 +56,19 @@ public class TaskEndpoint {
 	public List<Task> listAll(@QueryParam("start") final Integer startPosition,	@QueryParam("max") final Integer maxResult) {
 		// no pagination required for now
 		return repository.getAllForCurrentUser();
+	}
+
+	@PUT
+	@Path("/{id:[0-9][0-9]*}")
+	public Response closeTask(@PathParam("id") Long id) {
+		
+		Optional<Task> opt = repository.byId(id);
+		if (!opt.isPresent()) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+			
+		repository.complete(opt.get());
+		return Response.noContent().build();
 	}
 
 }
