@@ -1,6 +1,5 @@
 package org.devliberty.usablegtd.boundary;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +20,6 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 
 import org.devliberty.usablegtd.control.TaskRepository;
-import org.devliberty.usablegtd.control.TaskState;
 import org.devliberty.usablegtd.entity.Task;
 
 @RequestScoped
@@ -68,6 +66,13 @@ public class TaskEndpoint {
 		}
 			
 		repository.complete(opt.get());
+		return Response.noContent().build();
+	}
+
+	@DELETE
+	@Path("/{id:[0-9][0-9]*}")
+	public Response deleteById(@PathParam("id") final Long id) {
+		repository.remove(id);
 		return Response.noContent().build();
 	}
 
