@@ -60,4 +60,8 @@ public class TaskRepository {
 		return em.merge(task);
 	}
 	
+	public void remove(Long id) {
+		byId(id).ifPresent(t -> em.remove(t));
+	}
+	
 }
