@@ -16,6 +16,12 @@ Technology used for implementation:
 ### Execution requirements:
 * java jre 8 or above
 
+### Configuration
+Application persist data in Postgresql Database. 
+An instance of db is hosted on vultr ( https://www.vultr.com/ ). 
+For demo pupose only instance will be temporary available.
+Persist data can be removed at any time.
+
 ## HowTo run application
 
 #### Download and execute
