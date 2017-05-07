@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Injectable } from '@angular/core';
@@ -14,7 +14,17 @@ export class TasksService {
   pendingTasks(): Observable<Task[]> {
     return this.http.get(`${environment.endpointUrl}/tasks`)
       .map(res => res.json())
-      .catch(err => Observable.throw(err.json().error || 'Task endpoint service unavailable'));
+      .catch(err => Observable.throw(err || 'Task endpoint service unavailable'));
+  }
+
+  addTask(task: Task): Observable<void> {
+    return this.http.post(`${environment.endpointUrl}/tasks`, task)
+      .map(res => {
+        if ( res.status !== 201 ) {
+          return Observable.throw(res.json().error);
+        }
+      })
+      .catch(err => Observable.throw(err || 'Task endpoint service unavailable'));
   }
 
 }
