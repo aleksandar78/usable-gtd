@@ -14,6 +14,7 @@
 		<maven.war.plugin.version>2.6</maven.war.plugin.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<exec.maven.plugin.version>1.6.0</exec.maven.plugin.version>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -56,15 +57,15 @@
 				</executions>
 			</plugin>
 			<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin.version}</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                </configuration>
-            </plugin>
-            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>${maven.war.plugin.version}</version>
@@ -75,6 +76,44 @@
 						</resource>
 					</webResources>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>${exec.maven.plugin.version}</version>
+				<configuration>
+					<workingDirectory>angular</workingDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>ng-build</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>prepare-package</phase>
+						<configuration>
+							<executable>npm</executable>
+							<arguments>
+								<argument>run</argument>
+								<argument>build</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>ng-start</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>start</phase>
+						<configuration>
+							<executable>npm</executable>
+							<arguments>
+								<argument>run</argument>
+								<argument>start</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -100,7 +139,7 @@
 			<groupId>org.wildfly.swarm</groupId>
 			<artifactId>jpa</artifactId>
 		</dependency>
-		
+
 		<!-- JDBC -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
