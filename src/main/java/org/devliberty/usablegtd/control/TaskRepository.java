@@ -1,6 +1,8 @@
 package org.devliberty.usablegtd.control;
 
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,4 +43,12 @@ public class TaskRepository {
 		return Optional.ofNullable(em.find(Task.class, id));
 	}
 	
+	public List<Task> getAllForCurrentUser() {
+		Set<String> states = Arrays.stream(TaskState.values()).map(Enum::name).collect(Collectors.toSet());
+		return em.createNamedQuery(Task.FIND_BY_OWNER, Task.class)
+				.setParameter("userId", userRepository.getCurrentUser().getId())
+				.setParameter("states", states)
+				.getResultList();
+	}
+		
 }
