@@ -34,6 +34,6 @@ $ java -jar target/usablegtd-swarm.jar
 ```
 
 #### Access url:
-[Web app - http://localhost:8080] (http://localhost:8080)
+Web application: http://localhost:8080
 
-[Rest endpoint - http://localhost:8080/rest] (http://localhost:8080/rest)
+Rest endpoint: http://localhost:8080/rest
