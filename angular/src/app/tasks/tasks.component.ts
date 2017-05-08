@@ -10,12 +10,22 @@ import { Observable, Subscription } from 'rxjs/Rx';
    .add-box {
      margin: 5px auto;
    }
+
+   .bm-20 {
+     margin-bottom: 20px;
+   }
+
+   h2 {
+     padding: .5rem .75rem;
+   }
   `]
 })
 export class TasksComponent implements OnInit, OnDestroy {
 
   desc = '';
   openTasks: Task[];
+  closedTasks: Task[];
+
   subTasks$: Subscription;
   title: String = 'Usable GTD';
 
@@ -32,7 +42,10 @@ export class TasksComponent implements OnInit, OnDestroy {
   setTasks(): void {
      this.subTasks$ = this.service.pendingTasks()
        .subscribe(
-         tasks => this.openTasks = tasks.filter(t => t.state === 'TODO')
+         tasks => {
+           this.openTasks = tasks.filter(t => t.state === 'TODO');
+           this.closedTasks = tasks.filter(t => t.state === 'COMPLETED');
+         }
        );
   }
 
