@@ -5,15 +5,17 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { TasksComponent } from './tasks/tasks.component';
-import { TaskComponent } from './tasks/task.component';
+import { TaskPendingComponent } from './tasks/task-pending.component';
 
 import { TasksService } from './tasks/tasks.service';
+import { TaskCompletedComponent } from './tasks/task-completed.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TasksComponent,
-    TaskComponent
+    TaskPendingComponent,
+    TaskCompletedComponent
   ],
   imports: [
     BrowserModule,
