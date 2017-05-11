@@ -26,7 +26,7 @@ Persisted data can be removed at any time.
 
 #### Download and execute
 ```shell
-$ wget https://github.com/aleksandar78/usable-gtd/releases/download/v0.1.1/usablegtd-swarm.jar
+$ wget https://github.com/aleksandar78/usable-gtd/releases/download/v.0.1.1/usablegtd-swarm.jar
 
 $ java -jar usablegtd-swarm.jar
 ```
